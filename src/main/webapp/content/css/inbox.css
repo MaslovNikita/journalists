@@ -1,0 +1,80 @@
+@import "mainStyle.css";
+
+.messages{
+    position: relative;
+    width: 800px;
+    margin: 0 auto;
+    padding-top: 1em;
+}
+
+.message{
+    position: relative;
+    width: 800px;
+    height: 1.875em;
+    border-bottom: 1px solid #eaedf6;
+    font: 1em Arial,sans-serif;
+    color: #000;
+    white-space: nowrap;
+}
+
+.message_date{
+    position: relative;
+    float: right;
+    right: 0px;
+    width: 10em;
+    text-align: right;
+}
+
+.message_firstline{
+    overflow: hidden;
+    position: relative;
+    float: left;
+    padding-left: 1em;
+    text-overflow: ellipsis;
+    width: 27em;
+}
+
+.message-from {
+    overflow: hidden;
+    width: 8em;
+    position: relative;
+    float: left;
+    text-overflow: ellipsis;
+}
+
+.message-delete {
+    margin-left: 1em;
+    width: .875em;
+    height: .875em;
+    position: relative;
+    float: right;
+}
+
+.message-delete img{
+    max-width: 1em;
+    height: auto;
+}
+
+.message button{
+    max-width: 100%;
+    max-height: 100%;
+    width: 1em;
+    height: 1em;
+    border: none;
+    padding: 0em;
+    background-color: #FFFFFF;
+}
+
+.category-button{
+    padding-right: 1em;
+    border-left: 1px solid;
+    border-right: 1px solid;
+}
+
+.message-to{
+    overflow: hidden;
+    width: 8em;
+    position: relative;
+    float: left;
+    text-overflow: ellipsis;
+}

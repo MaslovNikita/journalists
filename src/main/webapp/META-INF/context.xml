@@ -1,0 +1,11 @@
+<Context>
+    <!--<Resource name="jdbc/journalists_db"-->
+              <!--auth="Container"-->
+              <!--type="javax.sql.DataSource"-->
+              <!--username="root"-->
+              <!--password="bedpas"-->
+              <!--driverClassName="com.mysql.jdbc.Driver"-->
+              <!--url="jdbc:mysql://localhost:3306/inner_circle"-->
+              <!--maxActive="15"-->
+              <!--maxIdle="3"/>-->
+</Context>

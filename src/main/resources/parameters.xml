@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<dbParameters>
+    <driver>com.mysql.jdbc.Driver</driver>
+    <url>jdbc:mysql://localhost:3306/journalists_db?characterEncoding=utf8</url>
+    <user>root</user>
+    <password>bedpas</password>
+    <pullSize>100</pullSize>
+</dbParameters>
