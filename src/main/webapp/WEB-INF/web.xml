@@ -42,6 +42,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>friends</servlet-name>
+        <jsp-file>/content/users_pages/friends_list.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>friends</servlet-name>
+        <url-pattern>/friends</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>inbox</servlet-name>
         <jsp-file>/content/users_pages/inbox_page.jsp</jsp-file>
     </servlet>
@@ -49,6 +59,16 @@
     <servlet-mapping>
         <servlet-name>inbox</servlet-name>
         <url-pattern>/inbox</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>search</servlet-name>
+        <jsp-file>/content/users_pages/search_page.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>search</servlet-name>
+        <url-pattern>/searchProfile</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -200,5 +220,56 @@
         <servlet-name>deleteMessage</servlet-name>
         <url-pattern>/service/deleteMessage</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addFriendServlet</servlet-name>
+        <servlet-class>servlet.AddFriend</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>addFriendServlet</servlet-name>
+        <url-pattern>/service/addFriend</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>removeFriendServlet</servlet-name>
+        <servlet-class>servlet.RemoveFriend</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>removeFriendServlet</servlet-name>
+        <url-pattern>/service/removeFriend</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>removeFromTrash</servlet-name>
+        <servlet-class>servlet.RemoveFromTrash</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>removeFromTrash</servlet-name>
+        <url-pattern>/service/removeFromTrash</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>clearDeleted</servlet-name>
+        <servlet-class>servlet.ClearDeleted</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>clearDeleted</servlet-name>
+        <url-pattern>/service/clearDeleted</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>searchProfileServlet</servlet-name>
+        <servlet-class>servlet.SearchProfile</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>searchProfileServlet</servlet-name>
+        <url-pattern>/searchResult</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>

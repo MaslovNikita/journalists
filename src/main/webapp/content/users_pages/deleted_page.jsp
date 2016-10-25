@@ -18,7 +18,7 @@
 <head>
     <c:import url="/content/i18n/setBundle.jsp"/>
     <title>deleted page</title>
-    <link rel="stylesheet" href="content/css/inbox.css">
+    <link rel="stylesheet" href="content/css/mail.css">
     <script src="content/js/leftMenu.js"></script>
     <meta charset="utf-8"/>
 </head>
@@ -53,7 +53,7 @@
                         </a>
                     </form>
                     <div class="message-delete">
-                        <form action="service/deleteMessage">
+                        <form action="service/removeFromTrash">
                             <button formmethod="post" type="submit">
                                 <img src="content/images/icons/cancel.png">
                             </button>
@@ -79,7 +79,7 @@
                             </a>
                         </form>
                         <div class="message-delete">
-                            <form action="service/deleteMessage">
+                            <form action="service/removeFromTrash">
                                 <button formmethod="post" type="submit">
                                     <img src="content/images/icons/cancel.png">
                                 </button>
@@ -92,6 +92,13 @@
                                                                   pattern="dd-MM-yyyy HH:mm"/></div>
                     </div>
                 </c:forEach>
+            </div>
+            <div>
+                <form action="service/clearDeleted">
+                    <button formmethod="post" type="submit">Clear</button>
+                    <input type="hidden" name="user_id" value="${user.id}">
+                    <input type="hidden" name="backUri" value="${pageContext.request.requestURI}">
+                </form>
             </div>
         </div>
     </div>

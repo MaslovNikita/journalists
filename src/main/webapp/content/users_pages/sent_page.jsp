@@ -18,7 +18,7 @@
 <head>
     <c:import url="/content/i18n/setBundle.jsp"/>
     <title>sent page</title>
-    <link rel="stylesheet" href="content/css/inbox.css">
+    <link rel="stylesheet" href="content/css/mail.css">
     <script src="content/js/leftMenu.js"></script>
     <meta charset="utf-8"/>
 </head>

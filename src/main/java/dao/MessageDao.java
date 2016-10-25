@@ -293,4 +293,21 @@ public class MessageDao {
             pool.closeConnection(connection, preparedStatement);
         }
     }
+
+    public void removeFromTrash(final int messageId,final boolean isIncoming){
+        String destTable = isIncoming ? "incoming_message" : "outgoing_message";
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = pool.takeConnection();
+            String query = "DELETE FROM "+destTable+" WHERE deleted = 1 AND id = ?";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, messageId);
+            preparedStatement.executeUpdate();
+        } catch (ConnectionPoolException | SQLException e) {
+            log.log(Level.ERROR, "In MessageDao, getMessages: " + e.getLocalizedMessage());
+        } finally {
+            pool.closeConnection(connection, preparedStatement);
+        }
+    }
 }

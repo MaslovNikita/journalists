@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by homie on 04.10.16.
@@ -188,5 +190,49 @@ public class UserDao {
         } finally {
             pool.closeConnection(con, stmt);
         }
+    }
+
+    public List<User> searchUsers(User user) {
+        List<User> foundUsers = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+
+        String query = "SELECT * FROM user_info WHERE TRUE ";
+        if (!user.getName().equals("") && user.getName() != null) {
+            query = query + "AND name LIKE '"+user.getName()+"%' ";
+        }
+        if (!user.getSurname().equals("") && user.getSurname() != null) {
+            query = query + "AND surname LIKE '"+user.getSurname()+"%' ";
+        }
+        if (user.getGender() == 1 || user.getGender() == 2) {
+            query = query + "AND gender = "+user.getGender()+" ";
+        }
+        query +=" ORDER BY surname ASC, name ASC;";
+        try {
+            con = pool.takeConnection();
+            stmt = con.prepareStatement(query);
+            resultSet = stmt.executeQuery();
+            while (resultSet.next()){
+                foundUsers.add(new User(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("surname"),
+                        resultSet.getDate("date_birthday"),
+                        resultSet.getShort("gender"),
+                        resultSet.getString("about_self"),
+                        resultSet.getString("telephone_number"),
+                        resultSet.getString("email"),
+                        resultSet.getBoolean("avatar")
+                        )
+                );
+            }
+        } catch (Exception e) {
+            log.error("Something is wrong in UserDAO: " + e.getLocalizedMessage());
+            return foundUsers;
+        } finally {
+            pool.closeConnection(con, stmt, resultSet);
+        }
+        return foundUsers;
     }
 }

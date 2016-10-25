@@ -1,6 +1,6 @@
 /*@font-face {*/
-    /*font-family: Bitter;*/
-    /*src: url(../fonts/Bitter/Bitter-Bold.otf);*/
+/*font-family: Bitter;*/
+/*src: url(../fonts/Bitter/Bitter-Bold.otf);*/
 /*}*/
 
 /*div {
@@ -8,14 +8,14 @@
     font-size: 20px;
 }*/
 
-#main-div{
+#main-div {
     position: relative;
 }
 
-#left-panel{
+#left-panel {
     position: absolute;
     left: 0px;
-    top:0px;
+    top: 0px;
     width: 70px;
     margin: 20px 0 0 10px;
 }
@@ -27,7 +27,7 @@
     height: 60px;
 }
 
-#message-button_left-panel div{
+#message-button_left-panel div {
     position: absolute;
     top: 17px;
     margin: 0 auto;
@@ -43,19 +43,19 @@
     position: absolute;
 }
 
-a:active{
+a:active {
     font: 1em Arial, sans-serif;
     color: #000000;
 }
 
-a{
+a {
     font: 1em Arial, sans-serif;
     text-decoration: none;
     border-bottom: 1px solid #000000;
     color: #000000;
 }
 
-#photo-panel{
+#photo-panel {
     position: absolute;
     left: 90px;
     top: 0px;
@@ -64,7 +64,8 @@ a{
     margin: 20px 10px 0 10px;
     padding: 10px;
 }
-#user-info-panel{
+
+#user-info-panel {
     position: absolute;
     left: 520px;
     top: 0px;
@@ -74,7 +75,7 @@ a{
     margin: 20px 0 0 10px;
 }
 
-#photo{
+#photo {
     width: 400px;
     height: 400px;
     margin: 0 auto;
@@ -95,8 +96,8 @@ a{
     top: 0px;
 }
 
-#popup-upload-photo{
-    top:120px;
+#popup-upload-photo {
+    top: 120px;
     margin: 0 auto;
     width: 480px;
     height: 480px;
@@ -105,8 +106,8 @@ a{
     position: relative;
 }
 
-#popup-message-div{
-    top:70px;
+#popup-message-div {
+    top: 70px;
     margin: 0 auto;
     width: 480px;
     height: 320px;
@@ -115,17 +116,17 @@ a{
     position: absolute;
 }
 
-#popup-message-div > div{
+#popup-message-div > div {
     margin: 0 auto;
 }
 
-#message-text{
+#message-text {
     bottom: 80px;
     height: 220px;
     width: 440px;
 }
 
-#message-text > textarea{
+#message-text > textarea {
     min-height: 100%;
     max-height: 100%;
     max-width: 100%;
@@ -134,30 +135,168 @@ a{
     font-size: 14px;
 }
 
-#message-header{
+#message-header {
     width: 440px;
     height: 60px;
     padding: 8px;
 }
 
-#message-button{
+#message-button {
     width: 440px;
     height: 40px;
 }
 
-#image-user-message{
+#image-user-message {
     left: 0px;
     margin-right: 40px;
     width: 50px;
     height: 50px;
 }
 
-#message-header > div{
+#message-header > div {
     position: relative;
     float: left;
 }
 
-#image-user-message > img{
+#image-user-message > img {
     max-width: 100%;
     height: auto;
+}
+
+#friend-list {
+    position: absolute;
+    left: 90px;
+    top: 0px;
+    width: 20em;
+    height: 30em;
+    overflow-y: scroll;
+    margin: 20px 10px 0 10px;
+    padding: 10px;
+    border: 1px solid #000000;
+}
+
+.friend_friend-list {
+    position: relative;
+    border-bottom: 1px solid #000000;
+    height: 1.5em;
+    padding: 0.5em 0.2em;
+    font-size: 1em;
+}
+
+.friend_friend-list > a {
+    position: relative;
+}
+
+.friend-image_friend-list {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1.5em;
+    height: auto;
+}
+
+.name_friend-list {
+    position: absolute;
+    left: 1.8em;
+    top: 0;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.friend-image_friend-list img {
+    max-width: 1.45em;
+    height: auto;
+}
+
+#header {
+    width: 100%;
+    height: 3em;
+    background-color: #a9a9a9;
+    padding-top: 1.1em;
+    padding-bottom: 1.1em;
+    margin-bottom: 1.5em;
+}
+
+#language-header {
+    position: relative;
+    float: right;
+    height: 1.3em;
+}
+
+#login-header {
+    position: relative;
+    float: right;
+    margin-right: 2em;
+    font: 1.8em Arial, sans-serif;
+}
+
+#login-header > a {
+    border: 1px solid;
+    border-radius: 16%;
+    padding: 0.3em;
+    background-color: #d3d3d3;
+    margin-right: 0.4em;
+}
+
+#language-header button {
+    background: none;
+    width: 4em;
+    padding: 0;
+    border: none;
+}
+
+#language-header img {
+    max-width: 100%;
+    height: auto;
+}
+
+#search-param {
+    position: absolute;
+    left: 90px;
+    top: 0;
+    width: 17em;
+    margin: 20px 10px 0 10px;
+    padding: 10px;
+}
+
+.search-row input{
+    display: block;
+}
+.search-row select{
+    display: block;
+}
+
+#search-result{
+    position: absolute;
+    left: 18em;
+    top: 0em;
+    width: 12em;
+    margin: 20px 10px 0 10px;
+    font-size: 1.5em;
+    border: 1px solid;
+}
+
+.row_search-result{
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 1.7em;
+    border-bottom: 1px solid;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 0.8em;
+}
+
+.row_search-result > a{
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.search-row{
+    margin-bottom: 0.6em;
+}
+
+#header-result{
+    background-color: #d3d3d3;
+    border-bottom: 2px solid #000000;
+    padding: 10px;
 }

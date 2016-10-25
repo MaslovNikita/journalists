@@ -13,12 +13,19 @@
         <img src="content/images/icons/user.png">
     </div>
     <div id="message-button_left-panel" class="button_left-panel">
-        <a href="/Journalist.ru/inbox">
+        <a href="inbox">
             <div>${messageDao.countNewIncomingMessage(user.id)}</div>
             <img src="content/images/icons/speech-bubble.png">
         </a>
     </div>
     <div class="button_left-panel">
-        <img src="content/images/icons/group.png">
+        <a href="friends">
+            <img src="content/images/icons/group.png">
+        </a>
+    </div>
+    <div class="button_left-panel">
+        <a href="searchProfile">
+            <img src="content/images/icons/search.png">
+        </a>
     </div>
 </div>

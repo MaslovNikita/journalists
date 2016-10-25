@@ -12,6 +12,7 @@
 <jsp:useBean id="userOnPage" scope="session" class="model.User"/>
 <jsp:useBean id="user" scope="session" class="model.User"/>
 <jsp:useBean id="genderDao" scope="session" class="dao.GenderDao"/>
+<jsp:useBean id="friendsDao" scope="session" class="dao.FriendsDao"/>
 
 <c:import url="/content/users_pages/left_panel.jsp"/>
 <c:if test="${userOnPage.id ne -1}">
@@ -40,11 +41,28 @@
                         <button onclick="showMessageDiv()">
                             <fmt:message key="Send_message" bundle="${lbl}"/>
                         </button>
-                    <form action="" method="post">
-                        <button type="submit" formmethod="post">
-                            <fmt:message key="Add_to_friend" bundle="${lbl}"/>
-                        </button>
-                    </form>
+                    <c:choose>
+                        <c:when test="${friendsDao.isFriend(user.id,userOnPage.id)}">
+                            <form action="service/removeFriend" method="post">
+                                <button type="submit" formmethod="post">
+                                    Remove from friend
+                                </button>
+                                <input type="hidden" name="user_id" value="${user.id}">
+                                <input type="hidden" name="friend_id" value="${userOnPage.id}">
+                                <input type="hidden" name="backUri" value="${pageContext.request.requestURI}id${userOnPage.id}">
+                            </form>
+                        </c:when>
+                        <c:otherwise>
+                            <form action="service/addFriend" method="post">
+                                <button type="submit" formmethod="post">
+                                    <fmt:message key="Add_to_friend" bundle="${lbl}"/>
+                                </button>
+                                <input type="hidden" name="user_id" value="${user.id}">
+                                <input type="hidden" name="friend_id" value="${userOnPage.id}">
+                                <input type="hidden" name="backUri" value="${pageContext.request.requestURI}id${userOnPage.id}">
+                            </form>
+                        </c:otherwise>
+                    </c:choose>
                 </c:otherwise>
             </c:choose>
         </div>

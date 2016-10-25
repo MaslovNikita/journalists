@@ -18,7 +18,7 @@
 <head>
     <c:import url="/content/i18n/setBundle.jsp"/>
     <title>inbox page</title>
-    <link rel="stylesheet" href="content/css/inbox.css">
+    <link rel="stylesheet" href="content/css/mail.css">
     <script src="content/js/leftMenu.js"></script>
     <meta charset="utf-8"/>
 </head>
@@ -34,22 +34,22 @@
         </div>
         <div class="message-content">
             <c:forEach items="${messageDao.getMessages(user.id,false,true)}" var="incoming_message">
-            <c:choose>
-            <c:when test="${incoming_message.viewed}">
-            <div class="message">
-                </c:when>
-                <c:otherwise>
-                <div class="message" style="font-weight: bold">
-                    </c:otherwise>
-                    </c:choose>
+                <div class="message">
                     <div class="message-from">
                         <a href="/Journalist.ru/id${incoming_message.senderId}">${userDao.getUserById(incoming_message.senderId).surname} ${userDao.getUserById(incoming_message.senderId).name}</a>
                     </div>
                     <form action="reply_page.jsp" method="post">
                         <a href="/Journalist.ru/reply?message_id=${incoming_message.id}&is_incoming=true">
+                            <c:choose>
+                            <c:when test="${incoming_message.viewed}">
                             <div class="message_firstline">
-                                    ${incoming_message.message}
-                            </div>
+                                </c:when>
+                                <c:otherwise>
+                                <div class="message_firstline" style="font-weight: bold">
+                                    </c:otherwise>
+                                    </c:choose>
+                                        ${incoming_message.message}
+                                </div>
                         </a>
                     </form>
                     <div class="message-delete">
@@ -65,7 +65,7 @@
                     <div class="message_date"><fmt:formatDate value="${incoming_message.sendingTime}"
                                                               pattern="dd-MM-yyyy HH:mm"/></div>
                 </div>
-                </c:forEach>
+            </c:forEach>
         </div>
     </div>
 </div>
