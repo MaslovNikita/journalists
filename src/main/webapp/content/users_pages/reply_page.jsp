@@ -17,7 +17,7 @@
 
 <html>
 <head>
-    <title>Reply</title>
+    <title><fmt:message key="Reply" bundle="${lbl}"/></title>
     <link rel="stylesheet" href="content/css/reply.css">
     <script src="content/js/leftMenu.js"></script>
     <meta charset="utf-8"/>
@@ -35,14 +35,14 @@
                 <form action="service/replyServlet">
                     <div class="message-reply">
                         <div class="header-message-reply">
-                            <p>From: ${receiverUser.surname} ${receiverUser.name}</p>
+                            <p><fmt:message key="From" bundle="${lbl}"/> : ${receiverUser.surname} ${receiverUser.name}</p>
                         </div>
                         <div class="body-reply"><p>${readMessage.message}</p></div>
                         <div>
                             <div class="reply-text"><textarea name="message-text" required></textarea></div>
                             <input type="hidden" name="from-message" value="${user.id}">
                             <input type="hidden" name="to-message" value="${receiverUser.id}">
-                            <button type="submit" formmethod="post">Send</button>
+                            <button type="submit" formmethod="post"><fmt:message key="Send" bundle="${lbl}"/></button>
                         </div>
                     </div>
                 </form>
@@ -53,20 +53,20 @@
                 <form action="service/replyServlet">
                     <div class="message-reply">
                         <div class="header-message-reply">
-                            <p>To: ${receiverUser.surname} ${receiverUser.name}</p>
+                            <p><fmt:message key="To" bundle="${lbl}"/>: ${receiverUser.surname} ${receiverUser.name}</p>
                         </div>
                         <div class="body-reply"><p>${readMessage.message}</p></div>
                         <div>
                             <div class="reply-text"><textarea name="message-text" required></textarea></div>
                             <input type="hidden" name="from-message" value="${user.id}">
                             <input type="hidden" name="to-message" value="${receiverUser.id}">
-                            <button type="submit" formmethod="post">Send</button>
+                            <button type="submit" formmethod="post"><fmt:message key="Send" bundle="${lbl}"/>Send</button>
                         </div>
                     </div>
                 </form>
             </c:when>
             <c:otherwise>
-                No have such message
+                <fmt:message key="No_such_message" bundle="${lbl}"/>
             </c:otherwise>
         </c:choose>
     </div>

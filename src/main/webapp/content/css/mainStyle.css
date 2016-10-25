@@ -1,19 +1,10 @@
-/*@font-face {*/
-/*font-family: Bitter;*/
-/*src: url(../fonts/Bitter/Bitter-Bold.otf);*/
-/*}*/
-
-/*div {
-    font-family: Bitter;
-    font-size: 20px;
-}*/
-
 #main-div {
     position: relative;
 }
 
 #left-panel {
-    position: absolute;
+    position: relative;
+    float: left;
     left: 0px;
     top: 0px;
     width: 70px;
@@ -56,28 +47,29 @@ a {
 }
 
 #photo-panel {
-    position: absolute;
-    left: 90px;
+    position: relative;
+    float: left;
     top: 0px;
-    width: 420px;
+    width: 300px;
     background-color: #aabbcc;
     margin: 20px 10px 0 10px;
     padding: 10px;
 }
 
 #user-info-panel {
-    position: absolute;
-    left: 520px;
+    position: relative;
+    float: left;
     top: 0px;
-    width: 400px;
+    width: 44em;
     height: auto;
     background-color: #bbbbbb;
     margin: 20px 0 0 10px;
 }
 
 #photo {
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
+    position: relative;
     margin: 0 auto;
 }
 
@@ -97,13 +89,18 @@ a {
 }
 
 #popup-upload-photo {
-    top: 120px;
-    margin: 0 auto;
-    width: 480px;
-    height: 480px;
-    margin-top: 20px;
+    top: 12em;
+    left: 12em;
     background-color: #FFFFFF;
+    position: absolute;
+    padding: 20px;
+    border: 2px solid;
+}
+
+#popup-upload-photo > button {
     position: relative;
+    float: right;
+    margin-top: 2em;
 }
 
 #popup-message-div {
@@ -124,6 +121,25 @@ a {
     bottom: 80px;
     height: 220px;
     width: 440px;
+}
+
+.row_user-info-panel {
+    position: relative;
+    font-size: 1.2em;
+    overflow-x: visible;
+    white-space: nowrap;
+}
+
+.label-row_user-info-panel {
+    position: relative;
+    float: left;
+    width: 13em;
+    overflow-x: hidden;
+    white-space: nowrap;
+}
+
+.value-row_user-info-panel {
+    position: relative;
 }
 
 #message-text > textarea {
@@ -259,14 +275,15 @@ a {
     padding: 10px;
 }
 
-.search-row input{
-    display: block;
-}
-.search-row select{
+.search-row input {
     display: block;
 }
 
-#search-result{
+.search-row select {
+    display: block;
+}
+
+#search-result {
     position: absolute;
     left: 18em;
     top: 0em;
@@ -276,7 +293,7 @@ a {
     border: 1px solid;
 }
 
-.row_search-result{
+.row_search-result {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     padding-left: 1.7em;
@@ -286,17 +303,53 @@ a {
     font-size: 0.8em;
 }
 
-.row_search-result > a{
+.row_search-result > a {
     text-decoration: none;
     border-bottom: none;
 }
 
-.search-row{
+.search-row {
     margin-bottom: 0.6em;
 }
 
-#header-result{
+#header-result {
     background-color: #d3d3d3;
     border-bottom: 2px solid #000000;
     padding: 10px;
+}
+
+#news-feed {
+    position: relative;
+    margin-left: 70px;
+    padding: 20px;
+    width: 50em;
+}
+
+#title-header-news-feed {
+    margin-bottom: 1em;
+}
+
+.row_content_news-feed {
+    padding: 20px;
+    margin: 1em 0 1em 0;
+    background-color: lightgray;
+    border: 1px solid;
+    position: relative;
+}
+
+.row_content_news-feed p {
+    margin: 0;
+}
+
+.row_content_news-feed h3 {
+    margin: 0;
+}
+
+#feed-page-content {
+    position: relative;
+    float: left;
+    padding-left: 20px;
+    background-color: lightgray;
+    border: 1px solid;
+    margin-left: 2em;
 }

@@ -17,7 +17,7 @@
 <html>
 <head>
     <c:import url="/content/i18n/setBundle.jsp"/>
-    <title>friends</title>
+    <title><fmt:message key="Friends" bundle="${lbl}"/></title>
     <link rel="stylesheet" href="content/css/mainStyle.css">
     <script src="content/js/leftMenu.js"></script>
     <meta charset="utf-8"/>

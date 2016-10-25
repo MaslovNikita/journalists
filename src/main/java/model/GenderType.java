@@ -30,4 +30,12 @@ public class GenderType {
     public void setType_name(final String type_name) {
         this.type_name = type_name;
     }
+
+    @Override
+    public String toString() {
+        return "GenderType{" +
+                "id=" + id +
+                ", type_name='" + type_name + '\'' +
+                '}';
+    }
 }

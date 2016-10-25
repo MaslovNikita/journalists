@@ -60,7 +60,7 @@
         </c:if>
     </div>
     <div class="form-row">
-        <label for="form-about-self"><fmt:message key="About_self" bundle="${lbl}"/>: </label>
+        <label for="form-about-self"><fmt:message key="About_myself" bundle="${lbl}"/>: </label>
         <textarea form="register_data" id="form-about-self" name="about_self">${sessionScope.tmpAboutSelf}</textarea>
     </div>
     <button type="submit" formmethod="post">

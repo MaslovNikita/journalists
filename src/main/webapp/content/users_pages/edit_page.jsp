@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <%--
   Created by IntelliJ IDEA.
   User: homie
@@ -9,13 +8,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <jsp:useBean id="user" scope="session" class="model.User"/>
 
 <html>
 <head>
     <c:import url="/content/i18n/setBundle.jsp"/>
-    <title>Edit profile</title>
+    <title><fmt:message key="Edit_profile" bundle="${lbl}"/></title>
     <link rel="stylesheet" href="content/css/edit.css">
     <script src="content/js/leftMenu.js"></script>
     <meta charset="utf-8"/>
@@ -58,7 +56,7 @@
             </select>
         </div>
         <div class="form-row">
-            <label for="form-about-self"><fmt:message key="About_self" bundle="${lbl}"/>: </label>
+            <label for="form-about-self"><fmt:message key="About_myself" bundle="${lbl}"/>: </label>
             <textarea form="form-edit" id="form-about-self" name="about_self">${user.aboutSelf}</textarea>
         </div>
         <div class="form-row">

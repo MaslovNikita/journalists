@@ -84,4 +84,17 @@ public class Message {
         this.viewed = message.viewed;
         this.deleted = message.deleted;
     }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "receiverId=" + receiverId +
+                ", senderId=" + senderId +
+                ", message='" + message + '\'' +
+                ", sendingTime=" + sendingTime +
+                ", id=" + id +
+                ", viewed=" + viewed +
+                ", deleted=" + deleted +
+                '}';
+    }
 }

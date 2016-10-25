@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <%--
   Created by IntelliJ IDEA.
   User: homie
@@ -23,7 +22,7 @@
 <c:import url="header.jsp"/>
 <div id="main-div">
     <c:choose>
-        <c:when test="${sessionScope.containsKey('user')}">
+        <c:when test="${sessionScope.user ne null}">
             <c:import url="content/users_pages/main_user_page.jsp"/>
         </c:when>
         <c:otherwise>

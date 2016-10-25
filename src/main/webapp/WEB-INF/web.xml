@@ -22,6 +22,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>feed</servlet-name>
+        <jsp-file>/content/users_pages/feed_page.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>feed</servlet-name>
+        <url-pattern>/feed</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>sent</servlet-name>
         <jsp-file>/content/users_pages/sent_page.jsp</jsp-file>
     </servlet>
@@ -127,6 +137,11 @@
     </filter>
 
     <filter-mapping>
+        <filter-name>authFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
         <filter-name>charsetFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
@@ -135,11 +150,6 @@
         <filter-name>charsetFilter</filter-name>
         <filter-class>filter.SetCharsetFilter</filter-class>
     </filter>
-
-    <filter-mapping>
-        <filter-name>authFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
 
     <filter>
         <filter-name>userOnPageFilter</filter-name>
@@ -269,6 +279,26 @@
     <servlet-mapping>
         <servlet-name>searchProfileServlet</servlet-name>
         <url-pattern>/searchResult</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>subscribe</servlet-name>
+        <servlet-class>servlet.Subscribe</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>subscribe</servlet-name>
+        <url-pattern>/service/subscribe</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>unsubscribe</servlet-name>
+        <servlet-class>servlet.Unsubscribe</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>unsubscribe</servlet-name>
+        <url-pattern>/service/unsubscribe</url-pattern>
     </servlet-mapping>
 
 

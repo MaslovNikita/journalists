@@ -29,24 +29,30 @@ public class AuthFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
 
-//        String uri = req.getRequestURI();
-//        HttpSession session = req.getSession(true);
-//
-//        User user = (User) session.getAttribute("user");
-//        if (user != null) {
-//            if (uri.endsWith("login") || uri.endsWith("service/auth")) {
-//                resp.sendRedirect("/Journalist.ru/index.jsp");
-//            } else {
-//                filterChain.doFilter(servletRequest, servletResponse);
-//            }
-//        } else {
-//            if (uri.endsWith("login") || uri.endsWith("service/auth")) {
-//                filterChain.doFilter(servletRequest,servletResponse);
-//            } else {
-//                resp.sendRedirect("/Journalist.ru/login");
-//            }
-//        }
-        filterChain.doFilter(servletRequest,servletResponse);
+        String uri = req.getRequestURI();
+        HttpSession session = req.getSession(true);
+        User user = (User) session.getAttribute("user");
+
+        if (user != null && user.getId() != -1) {
+            filterChain.doFilter(servletRequest, servletResponse);
+        } else {
+            if (uri.endsWith("login") ||
+                    uri.endsWith("signup") ||
+                    uri.endsWith("service/auth") ||
+                    uri.endsWith("service/register") ||
+                    uri.endsWith("service/change_lang") ||
+                    uri.endsWith("/Journalist.ru") ||
+                    uri.endsWith("/Journalist.ru/") ||
+                    uri.endsWith("css/mainStyle.css") ||
+                    uri.endsWith("css/register.css") ||
+                    uri.endsWith("images/flags/Russia.png") ||
+                    uri.endsWith("images/flags/England.png")
+                    ) {
+                filterChain.doFilter(servletRequest, servletResponse);
+            } else {
+                resp.sendRedirect("/Journalist.ru/");
+            }
+        }
     }
 
     @Override

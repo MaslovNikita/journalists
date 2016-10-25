@@ -17,7 +17,7 @@
 <html>
 <head>
     <c:import url="/content/i18n/setBundle.jsp"/>
-    <title>inbox page</title>
+    <title><fmt:message key="Inbox_page" bundle="${lbl}"/></title>
     <link rel="stylesheet" href="content/css/mail.css">
     <script src="content/js/leftMenu.js"></script>
     <meta charset="utf-8"/>
@@ -28,9 +28,9 @@
     <c:import url="/content/users_pages/left_panel.jsp"/>
     <div class="messages">
         <div class="messages-category-button">
-            <span class="category-button"><a href="/Journalist.ru/inbox">Inbox</a></span>
-            <span class="category-button"><a href="/Journalist.ru/sent">Sent</a></span>
-            <span class="category-button"><a href="/Journalist.ru/deleted">Deleted</a></span>
+            <span class="category-button"><a href="/Journalist.ru/inbox"><fmt:message key="Inbox" bundle="${lbl}"/></a></span>
+            <span class="category-button"><a href="/Journalist.ru/sent"><fmt:message key="Sent" bundle="${lbl}"/></a></span>
+            <span class="category-button"><a href="/Journalist.ru/deleted"><fmt:message key="Deleted" bundle="${lbl}"/></a></span>
         </div>
         <div class="message-content">
             <c:forEach items="${messageDao.getMessages(user.id,false,true)}" var="incoming_message">
