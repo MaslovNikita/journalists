@@ -25,6 +25,7 @@ public class MessageDao {
 
     /**
      * Sends message
+     *
      * @param from
      * @param to
      * @param message
@@ -79,25 +80,31 @@ public class MessageDao {
 
     /**
      * Gets message
-     * @param id identifier of user
-     * @param deleted gets deleted message or no
+     *
+     * @param id         identifier of user
+     * @param deleted    gets deleted message or no
      * @param isIncoming gets incoming or outgoing
      * @return list of messages
      */
-    public List<Message> getMessages(final int id, final boolean deleted, final boolean isIncoming) {
+    public List<Message> getMessages(final int id, final boolean deleted, final boolean isIncoming, final int page) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         List<Message> resultList = new ArrayList<>();
         String distTable = isIncoming ? "incoming_message" : "outgoing_message";
         String fieldTable = isIncoming ? "receiver_id" : "sender_id";
+        String limit = deleted ? "" : "LIMIT ?,11";
+        int paramLimit = page < 0 ? 0 : page;
         try {
             connection = pool.takeConnection();
-            String query = "SELECT * FROM " + distTable + " WHERE "+fieldTable+" = ? AND deleted = ? " +
-                    "ORDER BY sending_time DESC;";
+            String query = "SELECT * FROM " + distTable + " FORCE INDEX (PRIMARY) WHERE " + fieldTable + " = ? AND deleted = ? " +
+                    "ORDER BY sending_time DESC " + limit + ";";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
             preparedStatement.setBoolean(2, deleted);
+            if (!deleted) {
+                preparedStatement.setInt(3, paramLimit * 10);
+            }
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Date date = resultSet.getDate("sending_time");
@@ -221,6 +228,7 @@ public class MessageDao {
 
     /**
      * View incoming message
+     *
      * @param message_id
      */
     public void viewMessage(final int message_id) {
@@ -241,6 +249,7 @@ public class MessageDao {
 
     /**
      * Gets one message
+     *
      * @param message_id message id
      * @param isIncoming if true gets from incoming otherwise outgoing
      * @return message
@@ -257,6 +266,7 @@ public class MessageDao {
 
     /**
      * Gets one message
+     *
      * @param message_id message id
      * @param isIncoming if true gets from incoming otherwise outgoing
      * @return message
@@ -295,6 +305,7 @@ public class MessageDao {
 
     /**
      * Mark message how deleted
+     *
      * @param message_id
      * @param isIncoming
      */
@@ -304,7 +315,7 @@ public class MessageDao {
         String destTable = isIncoming ? "incoming_message" : "outgoing_message";
         try {
             connection = pool.takeConnection();
-            String query = "UPDATE "+destTable+" SET deleted = 1 WHERE id = ?";
+            String query = "UPDATE " + destTable + " SET deleted = 1 WHERE id = ?";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, message_id);
             preparedStatement.executeUpdate();
@@ -317,6 +328,7 @@ public class MessageDao {
 
     /**
      * Removes all incoming messages which are marked how deleted
+     *
      * @param receiver_id
      */
     public void clearIncomingTrash(final int receiver_id) {
@@ -337,6 +349,7 @@ public class MessageDao {
 
     /**
      * Removes all outgoing messages which marked how deleted
+     *
      * @param sender_id
      */
     public void clearOutgoingTrash(final int sender_id) {
@@ -357,16 +370,17 @@ public class MessageDao {
 
     /**
      * Removes message are marked how deleted with id equals messageId
+     *
      * @param messageId
      * @param isIncoming
      */
-    public void removeFromTrash(final int messageId,final boolean isIncoming){
+    public void removeFromTrash(final int messageId, final boolean isIncoming) {
         String destTable = isIncoming ? "incoming_message" : "outgoing_message";
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
             connection = pool.takeConnection();
-            String query = "DELETE FROM "+destTable+" WHERE deleted = 1 AND id = ?";
+            String query = "DELETE FROM " + destTable + " WHERE deleted = 1 AND id = ?";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, messageId);
             preparedStatement.executeUpdate();
@@ -376,4 +390,5 @@ public class MessageDao {
             pool.closeConnection(connection, preparedStatement);
         }
     }
+
 }

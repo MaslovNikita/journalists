@@ -32,39 +32,57 @@
             <span class="category-button"><a href="/Journalist.ru/deleted"><fmt:message key="Deleted" bundle="${lbl}"/></a></span>
         </div>
         <div class="message-content">
-            <c:forEach items="${messageDao.getMessages(user.id,false,true)}" var="incoming_message">
-                <div class="message">
-                    <div class="message-from">
-                        <a href="/Journalist.ru/id${incoming_message.senderId}">${userDao.getUserById(incoming_message.senderId).surname} ${userDao.getUserById(incoming_message.senderId).name}</a>
-                    </div>
-                    <form action="reply_page.jsp" method="post">
-                        <a href="/Journalist.ru/reply?message_id=${incoming_message.id}&is_incoming=true">
-                            <c:choose>
-                            <c:when test="${incoming_message.viewed}">
-                            <div class="message_firstline">
-                                </c:when>
-                                <c:otherwise>
-                                <div class="message_firstline" style="font-weight: bold">
-                                    </c:otherwise>
-                                    </c:choose>
-                                        ${incoming_message.message}
-                                </div>
-                        </a>
-                    </form>
-                    <div class="message-delete">
-                        <form action="service/deleteMessage">
-                            <button formmethod="post" type="submit">
-                                <img src="content/images/icons/cancel.png">
-                            </button>
-                            <input type="hidden" name="message_id" value="${incoming_message.id}">
-                            <input type="hidden" name="is_incoming" value="true">
-                            <input type="hidden" name="backUri" value="${pageContext.request.requestURI}">
+            <c:forEach items="${messageDao.getMessages(user.id,false,true,param.page)}" var="incoming_message" varStatus="info">
+                <c:if test="${info.count lt 11}">
+                    <c:set var="last" scope="page" value="true"/>
+                </c:if>
+                <c:if test="${info.count ge 11}">
+                    <c:set var="last" scope="page" value="false"/>
+                </c:if>
+                <c:if test="${info.index lt 10}">
+                    <div class="message">
+                        <div class="message-from">
+                            <a href="/Journalist.ru/id${incoming_message.senderId}">${userDao.getUserById(incoming_message.senderId).surname} ${userDao.getUserById(incoming_message.senderId).name}</a>
+                        </div>
+                        <form action="reply_page.jsp" method="post">
+                            <a href="/Journalist.ru/reply?message_id=${incoming_message.id}&is_incoming=true">
+                                <c:choose>
+                                <c:when test="${incoming_message.viewed}">
+                                <div class="message_firstline">
+                                    </c:when>
+                                    <c:otherwise>
+                                    <div class="message_firstline" style="font-weight: bold">
+                                        </c:otherwise>
+                                        </c:choose>
+                                            ${incoming_message.message}
+                                    </div>
+                            </a>
                         </form>
+                        <div class="message-delete">
+                            <form action="service/deleteMessage">
+                                <button formmethod="post" type="submit">
+                                    <img src="content/images/icons/cancel.png">
+                                </button>
+                                <input type="hidden" name="message_id" value="${incoming_message.id}">
+                                <input type="hidden" name="is_incoming" value="true">
+                                <input type="hidden" name="backUri" value="${pageContext.request.requestURI}?page=${param.page}">
+                            </form>
+                        </div>
+                        <div class="message_date"><fmt:formatDate value="${incoming_message.sendingTime}"
+                                                                  pattern="dd-MM-yyyy HH:mm"/></div>
                     </div>
-                    <div class="message_date"><fmt:formatDate value="${incoming_message.sendingTime}"
-                                                              pattern="dd-MM-yyyy HH:mm"/></div>
-                </div>
+                </c:if>
             </c:forEach>
+            <div id="navigate-button">
+                <c:if test="${param.page gt 0}">
+                    <a href="?page=0&last=false">First</a>
+                    <a href="?page=${param.page-1}&last=false">Prev</a>
+                </c:if>
+                ${param.page}
+                <c:if test="${pageScope.last ne true}">
+                    <a href="?page=${param.page+1}">Next</a>
+                </c:if>
+            </div>
         </div>
     </div>
 </div>

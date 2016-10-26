@@ -33,7 +33,7 @@
             <span class="category-button"><a href="/Journalist.ru/deleted"><fmt:message key="Deleted" bundle="${lbl}"/></a></span>
         </div>
         <div class="message-content">
-            <c:forEach items="${messageDao.getMessages(user.id,true,true)}" var="incoming_deleted_message">
+            <c:forEach items="${messageDao.getMessages(user.id,true,true,-1)}" var="incoming_deleted_message">
             <c:choose>
             <c:when test="${incoming_deleted_message.viewed}">
             <div class="message">
@@ -66,7 +66,7 @@
                                                               pattern="dd-MM-yyyy HH:mm"/></div>
                 </div>
                 </c:forEach>
-                <c:forEach items="${messageDao.getMessages(user.id,true,false)}" var="outgoing_deleted_message">
+                <c:forEach items="${messageDao.getMessages(user.id,true,false,-1)}" var="outgoing_deleted_message">
                     <div class="message">
                         <div class="message-to">
                             <a href="/Journalist.ru/id${outgoing_deleted_message.receiverId}">${userDao.getUserById(outgoing_deleted_message.receiverId).surname} ${userDao.getUserById(outgoing_deleted_message.receiverId).name}</a>

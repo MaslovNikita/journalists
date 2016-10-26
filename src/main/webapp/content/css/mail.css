@@ -78,3 +78,16 @@
     float: left;
     text-overflow: ellipsis;
 }
+
+#navigate-button{
+    height: 2em;
+    padding: 10px;
+}
+
+#navigate-button > a{
+    margin: 0 1em 0 1em;
+    border: 1px solid;
+    text-decoration: none;
+    background-color: #d3d3d3;
+    padding: 9px;
+}
