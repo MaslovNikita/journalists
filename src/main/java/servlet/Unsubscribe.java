@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by homie on 25.10.16.
+ * Unsubscribes from news feed
  */
 public class Unsubscribe extends HttpServlet {
 

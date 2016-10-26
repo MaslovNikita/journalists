@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.sql.Date;
 
 /**
- * Created by homie on 03.10.16.
+ * Bean of user
  */
 public class User implements Serializable{
     private int id;

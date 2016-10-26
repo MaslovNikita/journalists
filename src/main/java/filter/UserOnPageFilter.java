@@ -12,7 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created by homie on 18.10.16.
+ * Provides correct present users page.
  */
 public class UserOnPageFilter implements Filter {
     @Override

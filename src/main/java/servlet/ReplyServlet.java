@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
- * Created by homie on 23.10.16.
+ * Send reply message
  */
 public class ReplyServlet extends HttpServlet {
 

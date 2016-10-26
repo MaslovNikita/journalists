@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * Created by homie on 02.10.16.
+ * Checks user have been authorized or no
  */
 public class AuthFilter implements Filter {
 

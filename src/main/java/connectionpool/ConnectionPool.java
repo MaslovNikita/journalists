@@ -17,22 +17,36 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executor;
 
 /**
- * Created by homie on 06.09.16.
+ *  Use for create connection pool. Connection pool contains connection to database.
  */
 public class ConnectionPool {
     private static final Logger log = LogManager.getRootLogger();
 
+    /**
+     * Available connections
+     */
     private BlockingQueue<Connection> connectionQueue;
+    /**
+     * Used connections
+     */
     private BlockingQueue<Connection> givenAwayConQueue;
 
+    /** Name of drive to database */
     private String driverName;
+    /** Url of database */
     private String url;
+    /** Name user for login to database */
     private String user;
+    /** Password user for login to database */
     private String password;
+    /** Pool size */
     private int poolSize;
 
     private static volatile ConnectionPool pool;
 
+    /**
+     * Creates new connection pool and initialize param
+     */
     private ConnectionPool() {
         try {
             DbParameters parameters = DbParameters.getDbParameters();
@@ -51,6 +65,11 @@ public class ConnectionPool {
         }
     }
 
+    /**
+     * Initialze param connections in connection pool
+     *
+     * @throws ConnectionPoolException
+     */
     private void initPool() throws ConnectionPoolException {
         Locale.setDefault(Locale.ENGLISH);
         try {
@@ -69,6 +88,11 @@ public class ConnectionPool {
         }
     }
 
+    /**
+     * Uses pattern singleton.
+     *
+     * @return connection pool
+     */
     public static ConnectionPool getPool(){
         ConnectionPool localInstance = pool;
 
@@ -97,6 +121,11 @@ public class ConnectionPool {
         }
     }
 
+    /**
+     * Take connection from available connections and put it to used connections.
+     * @return ready connection
+     * @throws ConnectionPoolException
+     */
     public Connection takeConnection() throws ConnectionPoolException {
         Connection connection;
         try {
@@ -108,6 +137,12 @@ public class ConnectionPool {
         return connection;
     }
 
+    /**
+     * Finishes work with connection and put it to available connections
+     * @param con
+     * @param st
+     * @param rs
+     */
     public void closeConnection(Connection con, Statement st, ResultSet rs) {
         try {
             rs.close();
@@ -126,6 +161,11 @@ public class ConnectionPool {
         }
     }
 
+    /**
+     * Finishes work with connection and put it to available connections
+     * @param con
+     * @param st
+     */
     public void closeConnection(Connection con, Statement st) {
         try {
             st.close();
@@ -150,6 +190,11 @@ public class ConnectionPool {
         }
     }
 
+    /**
+     * Wrap connection.
+     *
+     * Override close() method for right work connection pool.
+     */
     private class PooledConnection implements Connection {
         private Connection connection;
 

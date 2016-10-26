@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by homie on 24.10.16.
+ * Remove all messages which are marked how deleted
  */
 public class ClearDeleted extends HttpServlet {
 

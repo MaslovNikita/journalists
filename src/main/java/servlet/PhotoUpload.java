@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Created by homie on 19.10.16.
+ * Upload image on server
  */
 @WebServlet("/photoUploadServlet")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2,

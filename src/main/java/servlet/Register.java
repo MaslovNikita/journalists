@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.sql.Date;
 
 /**
- * Created by homie on 15.10.16.
+ * Sing up users
  */
 public class Register extends HttpServlet {
 

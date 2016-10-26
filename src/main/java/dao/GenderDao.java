@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Created by homie on 10.10.16.
+ * Provides access to table in database
  */
 public class GenderDao {
     private static final Logger log = LogManager.getRootLogger();
@@ -21,6 +21,11 @@ public class GenderDao {
     public GenderDao() {
     }
 
+    /**
+     *
+     * @param id
+     * @return name by id
+     */
     public String getNameById(final int id){
         Connection connection = null;
         PreparedStatement stmt = null;
@@ -43,6 +48,11 @@ public class GenderDao {
         }
     }
 
+    /**
+     *
+     * @param typeName
+     * @return id by name
+     */
     public int getIdByName(final String typeName){
         Connection connection = null;
         PreparedStatement stmt = null;

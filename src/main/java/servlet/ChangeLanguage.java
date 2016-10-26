@@ -7,7 +7,7 @@ import java.net.HttpCookie;
 import java.util.Locale;
 
 /**
- * Created by homie on 12.10.16.
+ * Change language of application
  */
 public class ChangeLanguage extends HttpServlet {
 

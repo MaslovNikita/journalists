@@ -1,7 +1,7 @@
 package model;
 
 /**
- * Created by homie on 10.10.16.
+ * Bean of gender type
  */
 public class GenderType {
     private short id;

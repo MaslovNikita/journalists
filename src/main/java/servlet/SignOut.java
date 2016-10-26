@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * Created by homie on 17.10.16.
+ * Sign out from system
  */
 public class SignOut extends HttpServlet {
 

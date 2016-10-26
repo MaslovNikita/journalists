@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by homie on 15.10.16.
+ * Sets charset utf-8 to request an response
  */
 public class SetCharsetFilter implements Filter {
     private ServletContext context;

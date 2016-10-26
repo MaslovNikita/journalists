@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * Created by homie on 04.10.16.
+ * Authorization user
  */
 public class Authorization extends HttpServlet {
 

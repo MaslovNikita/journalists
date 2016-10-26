@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by homie on 24.10.16.
+ * Remove friend from friend list
  */
 public class RemoveFriend extends HttpServlet {
 

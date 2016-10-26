@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.sql.Date;
 
 /**
- * Created by homie on 19.10.16.
+ * Edit profile of user
  */
 public class EditProfile extends HttpServlet {
 

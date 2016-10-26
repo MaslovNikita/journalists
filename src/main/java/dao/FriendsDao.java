@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by homie on 24.10.16.
+ * Provides access to table in database
  */
 public class FriendsDao {
 
@@ -24,6 +24,10 @@ public class FriendsDao {
     public FriendsDao(){
     }
 
+    /**
+     * @param user_id
+     * @return List of friends id for user with id equals user_id
+     */
     public List<Integer> getFriends(final int user_id){
         Connection connection = null;
         PreparedStatement stmt = null;
@@ -47,6 +51,12 @@ public class FriendsDao {
         }
     }
 
+    /**
+     * Add friend to friend list
+     * @param user_id
+     * @param friend_id
+     * @return true if added, false otherwise
+     */
     public boolean addFriend(final int user_id, final int friend_id){
         Connection connection = null;
         PreparedStatement stmt = null;
@@ -65,6 +75,12 @@ public class FriendsDao {
         }
     }
 
+    /**
+     * Remove friend from friend list
+     * @param user_id
+     * @param friend_id
+     * @return true removed, false otherwise
+     */
     public boolean removeFriend(final int user_id, final int friend_id){
         Connection connection = null;
         PreparedStatement stmt = null;
@@ -83,6 +99,12 @@ public class FriendsDao {
         }
     }
 
+    /**
+     * Checks friend user or no
+     * @param user_id
+     * @param friend_id
+     * @return true if yes, false otherwise
+     */
     public boolean isFriend(final int user_id,final int friend_id){
         Connection connection = null;
         PreparedStatement stmt = null;

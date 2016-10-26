@@ -3,7 +3,7 @@ package model;
 import java.sql.Date;
 
 /**
- * Created by homie on 10.10.16.
+ * Bean of message
  */
 public class Message {
     private int receiverId;

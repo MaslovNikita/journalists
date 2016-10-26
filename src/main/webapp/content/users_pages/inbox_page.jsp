@@ -13,7 +13,6 @@
 <jsp:useBean id="user" scope="session" class="model.User"/>
 <jsp:useBean id="messageDao" scope="session" class="dao.MessageDao"/>
 
-
 <html>
 <head>
     <c:import url="/content/i18n/setBundle.jsp"/>

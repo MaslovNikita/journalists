@@ -1,7 +1,7 @@
 package util;
 
 /**
- * Created by homie on 16.10.16.
+ * Reformat date of message for database
  */
 public class DateReformat {
     public static String forDataBase(String old){

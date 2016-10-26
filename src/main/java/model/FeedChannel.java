@@ -1,7 +1,7 @@
 package model;
 
 /**
- * Created by homie on 25.10.16.
+ * Stores bean of feed channel.
  */
 public class FeedChannel {
 

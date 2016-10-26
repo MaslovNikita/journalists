@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by homie on 04.10.16.
+ * Provides access to table in database
  */
 public class UserDao {
     private static final Logger log = LogManager.getRootLogger();
@@ -24,6 +24,11 @@ public class UserDao {
     public UserDao() {
     }
 
+    /**
+     * Checks occupied login or free
+     * @param login
+     * @return true if yes, false otherwise
+     */
     public boolean isLoginFree(final String login) {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -45,6 +50,12 @@ public class UserDao {
         return false;
     }
 
+    /**
+     * Checks correct password or no
+     * @param login
+     * @param password
+     * @return true if yes, false otherwise
+     */
     public boolean isPasswordCorrect(final String login, final String password) {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -67,6 +78,13 @@ public class UserDao {
         return false;
     }
 
+    /**
+     * Creates new user
+     * @param user
+     * @param login
+     * @param password
+     * @return true if create, false otherwise
+     */
     public boolean newUser(final User user, final String login, final String password) {
         Connection con = null;
         PreparedStatement stmt = null;
@@ -97,6 +115,12 @@ public class UserDao {
         }
     }
 
+    /**
+     * Validates password for login
+     * @param login
+     * @param password
+     * @return user if login and password valid
+     */
     public User validateUser(final String login, final String password) {
         Connection con = null;
         PreparedStatement stmt = null;
@@ -131,6 +155,11 @@ public class UserDao {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return user by Id
+     */
     public User getUserById(final int id) {
         Connection con = null;
         PreparedStatement stmt = null;
@@ -164,6 +193,11 @@ public class UserDao {
         }
     }
 
+    /**
+     * Update user
+     * @param user user with need param
+     * @return true if updated, flase otherwise
+     */
     public boolean updateUser(User user) {
         Connection con = null;
         PreparedStatement stmt = null;
@@ -192,6 +226,11 @@ public class UserDao {
         }
     }
 
+    /**
+     * Searches users.
+     * @param user user which contains search criterion
+     * @return
+     */
     public List<User> searchUsers(User user) {
         List<User> foundUsers = new ArrayList<>();
         Connection con = null;

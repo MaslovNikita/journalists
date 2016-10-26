@@ -9,10 +9,11 @@ import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
- * Created by homie on 20.10.16.
+ * Provides access to table in database
  */
 public class MessageDao {
 
@@ -22,6 +23,13 @@ public class MessageDao {
     public MessageDao() {
     }
 
+    /**
+     * Sends message
+     * @param from
+     * @param to
+     * @param message
+     * @param sendingTime
+     */
     public void sendMessage(final int from, final int to, String message, String sendingTime) {
         Connection connection = null;
         Statement transaction_stmt = null;
@@ -69,6 +77,13 @@ public class MessageDao {
         }
     }
 
+    /**
+     * Gets message
+     * @param id identifier of user
+     * @param deleted gets deleted message or no
+     * @param isIncoming gets incoming or outgoing
+     * @return list of messages
+     */
     public List<Message> getMessages(final int id, final boolean deleted, final boolean isIncoming) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -85,11 +100,15 @@ public class MessageDao {
             preparedStatement.setBoolean(2, deleted);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
+                Date date = resultSet.getDate("sending_time");
+                Time time = resultSet.getTime("sending_time");
+                Long datetime = date.getTime() + time.getTime() + 10800000;
+                date = new Date(datetime);
                 resultList.add(new Message(
                         resultSet.getInt("receiver_id"),
                         resultSet.getInt("sender_id"),
                         resultSet.getString("message"),
-                        resultSet.getDate("sending_time"),
+                        date,
                         resultSet.getInt("id"),
                         resultSet.getBoolean("viewed"),
                         resultSet.getBoolean("deleted")
@@ -104,7 +123,10 @@ public class MessageDao {
         return resultList;
     }
 
-
+    /**
+     * @param receiver_id
+     * @return count new incoming message
+     */
     public int countNewIncomingMessage(final int receiver_id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -127,6 +149,11 @@ public class MessageDao {
         return 0;
     }
 
+    /**
+     * @param message_id
+     * @param receiver_id
+     * @return true if message is a incoming for user, false otherwise
+     */
     public boolean isLetterIncoming(final String message_id, final int receiver_id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -157,6 +184,11 @@ public class MessageDao {
         return false;
     }
 
+    /**
+     * @param message_id
+     * @param sender_id
+     * @return true if message is a outgoing for user, false otherwise
+     */
     public boolean isLetterOutgoing(final String message_id, final int sender_id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -187,6 +219,10 @@ public class MessageDao {
         return false;
     }
 
+    /**
+     * View incoming message
+     * @param message_id
+     */
     public void viewMessage(final int message_id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -203,6 +239,12 @@ public class MessageDao {
         }
     }
 
+    /**
+     * Gets one message
+     * @param message_id message id
+     * @param isIncoming if true gets from incoming otherwise outgoing
+     * @return message
+     */
     public Message getMessage(final String message_id, final boolean isIncoming) {
         int int_message_id;
         try {
@@ -213,6 +255,12 @@ public class MessageDao {
         return getMessage(int_message_id, isIncoming);
     }
 
+    /**
+     * Gets one message
+     * @param message_id message id
+     * @param isIncoming if true gets from incoming otherwise outgoing
+     * @return message
+     */
     public Message getMessage(final int message_id, final boolean isIncoming) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -245,6 +293,11 @@ public class MessageDao {
         return readMessage;
     }
 
+    /**
+     * Mark message how deleted
+     * @param message_id
+     * @param isIncoming
+     */
     public void delete(final int message_id, final boolean isIncoming) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -262,6 +315,10 @@ public class MessageDao {
         }
     }
 
+    /**
+     * Removes all incoming messages which are marked how deleted
+     * @param receiver_id
+     */
     public void clearIncomingTrash(final int receiver_id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -278,6 +335,10 @@ public class MessageDao {
         }
     }
 
+    /**
+     * Removes all outgoing messages which marked how deleted
+     * @param sender_id
+     */
     public void clearOutgoingTrash(final int sender_id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -294,6 +355,11 @@ public class MessageDao {
         }
     }
 
+    /**
+     * Removes message are marked how deleted with id equals messageId
+     * @param messageId
+     * @param isIncoming
+     */
     public void removeFromTrash(final int messageId,final boolean isIncoming){
         String destTable = isIncoming ? "incoming_message" : "outgoing_message";
         Connection connection = null;

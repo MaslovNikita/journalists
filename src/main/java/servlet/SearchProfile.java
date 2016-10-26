@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by homie on 24.10.16.
+ * Search profile by criterion
  */
 public class SearchProfile extends HttpServlet {
 

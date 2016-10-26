@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
- * Created by homie on 20.10.16.
+ * Send message
  */
 @WebServlet("/sendMessage")
 public class SendMessageServlet extends HttpServlet {

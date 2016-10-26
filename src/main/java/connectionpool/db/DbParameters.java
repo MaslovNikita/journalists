@@ -1,23 +1,20 @@
 package connectionpool.db;
 
-
-import com.sun.jmx.remote.internal.Unmarshal;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.*;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.net.URL;
 
 /**
- * Created by homie on 04.10.16.
+ * Stores parameters of database.
+ *
+ * @author homie
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -80,6 +77,11 @@ public class DbParameters {
         this.pullSize = pullSize;
     }
 
+    /**
+     * Obtain parameters database from xml file.
+     *
+     * @return Object of DbParameters class, which stores database parameters
+     */
     public static DbParameters getDbParameters() {
         try {
             JAXBContext context = JAXBContext.newInstance(DbParameters.class);

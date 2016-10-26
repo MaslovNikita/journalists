@@ -1,7 +1,7 @@
 package model;
 
 /**
- * Created by homie on 25.10.16.
+ * Bean of items of feed channel
  */
 public class ItemsFeedChannel {
     private String title;

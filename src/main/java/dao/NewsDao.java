@@ -27,13 +27,18 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Created by homie on 25.10.16.
+ * Provides access to table in database
  */
 public class NewsDao {
 
     private static final Logger log = LogManager.getRootLogger();
     private ConnectionPool pool = ConnectionPool.getPool();
 
+    /**
+     * Gets list of feed channel for user with certain id
+     * @param id
+     * @return list of feed channel
+     */
     public List<FeedChannel> getFeedsListOfUsers(final int id) {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -68,6 +73,11 @@ public class NewsDao {
         return result;
     }
 
+    /**
+     * Gets feed channel by url
+     * @param feedsUrl
+     * @return feed channel
+     */
     public FeedChannel getChannelByUrl(final String feedsUrl) {
         FeedChannel feedChannel = new FeedChannel();
         try {
@@ -84,6 +94,11 @@ public class NewsDao {
         return feedChannel;
     }
 
+    /**
+     * Gets list of items of feed by url of feed channel
+     * @param feeds_url
+     * @return list of items
+     */
     public List<ItemsFeedChannel> getItemsOfFeed(final String feeds_url) {
         List<ItemsFeedChannel> result = new ArrayList<>();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH-mm");
@@ -109,6 +124,11 @@ public class NewsDao {
         return result;
     }
 
+    /**
+     * Unsubscribe from news feed
+     * @param ownerId
+     * @param url
+     */
     public void unsubscribe(final int ownerId, final String url) {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -127,6 +147,11 @@ public class NewsDao {
         }
     }
 
+    /**
+     * Subscribe on news feed
+     * @param ownerId
+     * @param url
+     */
     public void subscribe(final int ownerId, final String url) {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -144,6 +169,12 @@ public class NewsDao {
         }
     }
 
+    /**
+     * Checks subscribe on news feed
+     * @param ownerId
+     * @param url
+     * @return
+     */
     public boolean haveItNewsFeed(final int ownerId, final String url) {
         Connection connection = null;
         PreparedStatement statement = null;
